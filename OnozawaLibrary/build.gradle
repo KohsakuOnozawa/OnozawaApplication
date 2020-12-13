@@ -3,6 +3,32 @@ plugins {
 }
 apply plugin: 'kotlin-android'
 
+apply from: "$project.rootDir/tools/script-git-version.gradle"
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'com.example.onozawa.library'
+
+    publishedGroupId = 'com.example.onozawa.library'
+    libraryName = 'erikacheck'
+    artifact = 'erikacheck'
+
+    libraryDescription = appVersionName
+
+    siteUrl = 'https://github.com/KohsakuOnozawa/OnozawaApplication'
+    gitUrl = 'https://github.com/KohsakuOnozawa/OnozawaApplication.git'
+
+    libraryVersion = '1.1'
+
+    developerId = 'kohsakuonozawa'
+    developerName = 'Kohsaku Onozawa'
+    developerEmail = 'kohsaku.onozawa@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -42,3 +68,5 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+apply from: 'publish.gradle'

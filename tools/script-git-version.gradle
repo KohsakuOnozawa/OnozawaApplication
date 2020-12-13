@@ -1,0 +1,16 @@
+ext {
+    appVersionName = gitVersionName()
+}
+
+static def gitVersionName() {
+    def tag = "unknow"
+    def lastTagCommit = ""
+    def proc0 = "git rev-list --max-count=1 --tags".execute()
+    proc0.in.eachLine { line -> lastTagCommit = line }
+    proc0.err.eachLine { line -> println line }
+    def proc = "git describe --tags $lastTagCommit".execute()
+    proc.in.eachLine { line -> tag = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    tag
+}
